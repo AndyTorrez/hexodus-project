@@ -4,116 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hexodus | Gestión de Socios</title>
+    <!-- Mostrar iconos de Hexodus -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/icon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/icon.png" />
+    <!-- Carga de CSS para socios -->
+    <link rel="stylesheet" href="../assets/css/socios.css">
     <!-- Carga de Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Carga de íconos Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        /* Definición de Variables de Tema (Consistente con Dashboard) */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-        
-        :root {
-            --color-rojo-principal: #FF3B3B; /* Rojo vibrante del logo */
-            --color-azul-acento: #00BFFF; /* Azul neón para acentos */
-            --color-fondo-oscuro: #101014; /* Fondo oscuro principal */
-            --color-tarjeta-fondo: #1C1C20; /* Color de tarjeta */
-            --color-texto-claro: #E0E0E0;
-            --color-texto-gris: #A0A0A0;
-            --color-exito: #4BB543;
-            --color-alerta: #FFD700;
-            --color-peligro: #FF0000;
-        }
-
-        /* Estilos Globales y Fondo */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--color-fondo-oscuro);
-            background-size: 40px 40px;
-            color: var(--color-texto-claro);
-            min-height: 100vh;
-            display: flex; /* Añadido para el layout del sidebar/main */
-        }
-
-        /* Estilos de Componentes (Tarjetas y Elementos Neon) */
-        .tarjeta, .tarjeta-kpi { /* Usando estilos del dashboard */
-            background-color: var(--color-tarjeta-fondo);
-            border-radius: 0.75rem; /* rounded-xl */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Estilos del Botón Principal (Rojo Neón) */
-        .btn-principal {
-            background-color: var(--color-rojo-principal);
-            box-shadow: 0 0 10px rgba(255, 59, 59, 0.5);
-            transition: all 0.3s;
-        }
-        .btn-principal:hover {
-            background-color: #FF5A5A;
-            box-shadow: 0 0 20px rgba(255, 59, 59, 1);
-        }
-        
-        /* Estilos del Botón Secundario (Azul Neón - Usado en Filtros) */
-        .btn-secundario {
-            color: var(--color-azul-acento);
-            border: 1px solid var(--color-azul-acento);
-            transition: all 0.3s;
-        }
-        .btn-secundario:hover {
-            background-color: rgba(0, 191, 255, 0.1);
-            box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
-        }
-
-        /* Estilos de Campo de Texto en Focus (Borde Azul Neón) */
-        .input-neon:focus {
-            border-color: var(--color-azul-acento) !important;
-            box-shadow: 0 0 8px rgba(0, 191, 255, 0.5);
-            outline: none;
-        }
-
-        /* Estilo para Scrollbars de Tablas */
-        .tabla-scroll::-webkit-scrollbar {
-            height: 8px;
-        }
-        .tabla-scroll::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-        }
-        .tabla-scroll::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.1);
-        }
-
-        /* Estilos específicos para el modal */
-        .modal-fondo {
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(5px);
-        }
-        .modal-contenido {
-            max-height: 90vh;
-        }
-        
-        /* Estilos específicos del Dashboard/Menú (Consistentes) */
-        .sidebar {
-            background-color: var(--color-tarjeta-fondo);
-            border-right: 1px solid rgba(0, 191, 255, 0.1);
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
-        }
-        .nav-link:hover {
-             background-color: rgba(0, 191, 255, 0.1);
-        }
-        /* Dashboard activo usa fondo rojo sutil */
-        .nav-activo {
-            background-color: rgba(255, 59, 59, 0.15); 
-            color: var(--color-rojo-principal);
-            border-left: 4px solid var(--color-rojo-principal); /* Borde rojo para item activo */
-        }
-        .icon-alerta-rojo {
-            filter: drop-shadow(0 0 4px rgba(255, 59, 59, 0.5));
-        }
-        .encabezado-dashboard {
-             background-color: var(--color-fondo-oscuro);
-             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-    </style>
 </head>
 <body onload="lucide.createIcons()">
     <div class="flex h-screen overflow-hidden">
@@ -125,7 +24,7 @@
                 <div class="flex items-center space-x-3 mb-8">
                     <!-- CONTENEDOR PARA IMAGEN DEL LOGO COMPLETO-->
                     <div class="h-10 w-10 icon-alerta-rojo flex items-center justify-center">
-                        <img src="images/icon.png" alt="Logo Hexodus">
+                        <img src="../assets/images/icon.png" alt="Logo Hexodus">
                     </div>
                     <!-- TEXTO HEXODUS (Ahora text-xl) -->
                     <span class="text-xl font-bold tracking-widest uppercase" style="color: var(--color-rojo-principal);">HEXODUS</span>
@@ -394,57 +293,7 @@
         </div>
     </div>
 
-    <script>
-        // Función para actualizar la hora en el encabezado
-        const actualizarFechaHora = () => {
-            const now = new Date();
-            const fecha = now.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
-            const hora = now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', hour12: true });
-            document.getElementById('fecha-hora-header').textContent = `Admin. | ${fecha} | ${hora}`;
-        };
-        setInterval(actualizarFechaHora, 60000); // Actualizar cada minuto
-        actualizarFechaHora(); // Llamar al inicio
-
-        // Lógica para mostrar y ocultar el modal (RF12)
-        const modal = document.getElementById('modal-agregar-socio');
-        const btnAgregar = document.getElementById('btn-agregar-socio');
-        const btnCerrar = document.getElementById('btn-cerrar-modal');
-        const btnCancelar = document.getElementById('btn-cancelar-registro');
-
-        btnAgregar.addEventListener('click', () => {
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        });
-
-        const closeModal = () => {
-            modal.classList.add('hidden');
-            document.body.style.overflow = ''; 
-        };
-
-        btnCerrar.addEventListener('click', closeModal);
-        btnCancelar.addEventListener('click', closeModal);
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-                closeModal();
-            }
-        });
-        
-        // Lógica para toggle en móvil
-        const sidebar = document.querySelector('.sidebar');
-        const backdrop = document.getElementById('backdrop');
-        document.getElementById('menu-toggle').addEventListener('click', () => {
-            sidebar.classList.toggle('-translate-x-full');
-            backdrop.classList.toggle('hidden');
-        });
-        backdrop.addEventListener('click', () => {
-            sidebar.classList.add('-translate-x-full');
-            backdrop.classList.add('hidden');
-        });
-
-        // Inicializar iconos de Lucide
-        lucide.createIcons();
-    </script>
+    <script src="../assets/js/socios.js"></script>
 </body>
 </html>
 
